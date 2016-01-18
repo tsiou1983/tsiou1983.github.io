@@ -28,7 +28,7 @@ ChromePushManager.subscribeBrowserId = function(callback) {
       .then(function(subscription) {  
         var register = ChromePushManager.getRegistrationId(subscription);
         
-        console.log(subscription);
+        console.log(register);
         callback(null, register);
       })  
       .catch(function(e) {  

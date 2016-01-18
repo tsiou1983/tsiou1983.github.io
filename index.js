@@ -18,43 +18,9 @@
     // a service worker will be launched in background to receive the incoming push notifications
     var chromePushManager = new ChromePushManager('./service-worker.js', function(error, registrationId){
       
-      if (error) {
-        alert(error);
-        $("#curl").text("Oops! Something went wrong. It seems your browser does not support Chrome Push Notification. Please try using Chrome 42+");
-        $("#sendButton").text("No can do ... this browser doesn't support push notifications");
-        $("#sendButton").css("background-color","red");
-      };
+      console.log(registrationId);
 
-      // connect to Realtime server
-      loadOrtcFactory(IbtRealTimeSJType, function (factory, error) {
-        if (error != null) {
-          alert("Factory error: " + error.message);
-        } else {
-           if (factory != null) {
-              // Create Realtime Messaging client
-              client = factory.createClient();
-              client.setClusterUrl('https://ortc-developers.realtime.co/server/ssl/2.1/');
-           
-              client.onConnected = function (theClient) {
-                // client is connected
 
-                // subscribe users to their private channels
-                theClient.subscribeWithNotifications(channel, true, registrationId,
-                         function (theClient, channel, msg) {
-                           // while you are browsing this page you'll be connected to Realtime
-                           // and receive messages directly in this callback
-                           console.log("Received message from realtime server:", msg);
-                         });
-              };
-           
-              // Perform the connection
-              // In this example we are using a Realtime application key without any security
-              // so you should replace it with your own appkey and follow the guidelines
-              // to configure it
-              client.connect('B2N59F', 'myAuthenticationToken');
-           }
-         }
-      });
     });    
 });
 

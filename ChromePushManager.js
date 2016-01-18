@@ -27,8 +27,7 @@ ChromePushManager.subscribeBrowserId = function(callback) {
     serviceWorkerRegistration.pushManager.subscribe({userVisibleOnly: true})  
       .then(function(subscription) {  
         var register = ChromePushManager.getRegistrationId(subscription);
-        
-        console.log(register);
+       
         callback(null, register);
       })  
       .catch(function(e) {  

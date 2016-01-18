@@ -3,6 +3,8 @@
 
 // A push has arrived ...
 self.addEventListener('push', function(event) {
+  
+  console.log(event,"arrived");
   // Since there is no payload data with the first version  
   // of push messages, we'll use some static content. 
   // However you could grab some data from  
